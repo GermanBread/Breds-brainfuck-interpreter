@@ -14,12 +14,13 @@
 #include <vector>
 #include <climits>
 #include <iostream>
+#include "Global.hpp"
 
-int interpret(const char* input, const size_t string_size) {
-    std::vector<long> cells = std::vector<long>(1);
+void interpret(const char* input, const size_t string_size) {
     std::vector<ulong> loop_starts;
-    
-    ulong address = 0;
+    cells = std::vector<long>(1);
+
+    address = 0;
     ulong address_offset = 0;
     long loop_nest_level = -1;
 
@@ -88,7 +89,7 @@ int interpret(const char* input, const size_t string_size) {
                 std::cout << "Breakpoint '?' hit." << std::endl << "Address " << address << ", offset " << address_offset << ", iterator " << i << std::endl;
                 for (size_t i = 0; i < cells.size(); i++) {
                     std::cout << "Cell " << i << " has value " << cells[i] << std::endl;
-                    return 0;
+                    return;
                 }
                 break;
             default:
@@ -97,6 +98,4 @@ int interpret(const char* input, const size_t string_size) {
 
         cells[old_address + address_offset] = cell_value;
     }
-
-    return 0;
 }

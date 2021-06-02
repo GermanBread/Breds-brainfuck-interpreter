@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include "Interpreter.cpp"
+#include "Cells.cpp"
+#include "Global.hpp"
 
 int main(int argc, const char** argv) {
         if (argc < 2) {
@@ -10,5 +12,7 @@ int main(int argc, const char** argv) {
     }
     const char* code = argv[1];
     size_t length = std::string(code).length();
-    return interpret(code, length);
+    interpret(code, length);
+    std::cout << "Interpretation competed, the programme exited with address " << address << " and " << cells.size() << " cell(s)." << std::endl;
+    printCells();
 }
