@@ -37,7 +37,7 @@ void interpret(const char* input, const size_t string_size) {
         switch (instruction) {
             case '>':
                 address++;
-                if (address + address_offset >= cells.size()) {
+                if (address + address_offset > cells.size()) {
                     cells.push_back(0);
                 }
                 break;

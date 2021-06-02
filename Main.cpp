@@ -13,6 +13,6 @@ int main(int argc, const char** argv) {
     const char* code = argv[1];
     size_t length = std::string(code).length();
     interpret(code, length);
-    std::cout << "Interpretation competed, the programme exited with address " << address << " and " << cells.size() << " cell(s)." << std::endl;
+    std::cout << std::endl << std::endl << "Interpretation completed, the programme exited with address " << address << " and " << cells.size() + 1 << " cell(s)." << std::endl;
     printCells();
 }
