@@ -18,7 +18,7 @@
 
 void interpret(const char* input, const size_t string_size) {
     std::vector<ulong> loop_starts;
-    cells = std::vector<long>(1);
+    cells = std::vector<int64_t>(1);
 
     address = 0;
     ulong address_offset = 0;
@@ -86,11 +86,16 @@ void interpret(const char* input, const size_t string_size) {
                 i = loop_starts[loop_nest_level];
                 break;
             case '?':
-                std::cout << "Breakpoint '?' hit." << std::endl << "Address " << address << ", offset " << address_offset << ", iterator " << i << std::endl;
-                for (size_t i = 0; i < cells.size(); i++) {
-                    std::cout << "Cell " << i << " has value " << cells[i] << std::endl;
-                    return;
-                }
+                std::cout << std::endl <<
+                 ANSI_COL_CYAN << ANSI_MKUNDERLINE("Breakpoint") << " '?' hit."
+                 << std::endl << ANSI_MKUNDERLINE("Address " << address)
+                 << ", " << ANSI_MKUNDERLINE("offset " << address_offset)
+                 << ", " << ANSI_MKUNDERLINE("iterator " << i) <<
+                std::endl;
+
+                printCells();
+                
+                std::cout << ANSI_RESET;
                 break;
             default:
                 break;
