@@ -78,7 +78,9 @@ void interpret(const char* input, const size_t string_size) {
                 loop_nest_level++;
                 break;
             case ']':
-                if (cell_value == 0) {
+                if (loop_starts.size() == 0)
+                    return;
+                else if (cell_value == 0) {
                     loop_starts.erase(loop_starts.end() - 1);
                     loop_nest_level--;
                     break;
