@@ -11,9 +11,10 @@
  *  ] 	Jump back to the matching [ if the cell at the pointer is nonzero
  * 
  *  EXTENSIONS:
- *  ?   Print the contents of memory including the current address
  *  _   Swap the contents of the cell with the contents of a reusable variable
  *  !   Jump to address 0
+ *  ?   Undo last ! (or ?)
+ *  #   Print the contents of memory including the current address
  */
 
 #include <deque>
@@ -28,8 +29,10 @@ void interpret(const char* input, const size_t string_size) {
     std::vector<uint64_t> loop_starts;
     cells = std::deque<int64_t>(1);
     int64_t swap = 0;
+    int64_t addrswp = 0;
 
     address = 0;
+    int64_t prev_addr = 0;
     int64_t loop_nest_level = -1;
 
     for (size_t i = 0; i < string_size; i++) {
@@ -89,15 +92,22 @@ void interpret(const char* input, const size_t string_size) {
                 i = loop_starts[loop_nest_level];
                 break;
             // Extensions start here
-            case '!':
-                if (noext) break;
-                address = 0;
-                break;
             case '_':
                 if (noext) break;
                 std::swap(swap, cells[address]);
                 break;
+            case '!':
+                if (noext) break;
+                prev_addr = address;
+                address = 0;
+                break;
             case '?':
+                if (noext) break;
+                addrswp = address;
+                address = prev_addr;
+                prev_addr = addrswp;
+                break;
+            case '#':
                 if (noext) break;
                 
                 std::cout << std::endl <<
