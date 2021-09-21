@@ -13,8 +13,8 @@
  *  EXTENSIONS:
  *  _   Swap the contents of the cell with the contents of a reusable variable
  *  !   Jump to address 0
- *  ?   Undo last ! (or ?)
- *  #   Print the contents of memory including the current address
+ *  #   Undo last ! (or ?)
+ *  ?   Print the contents of memory including the current address
  */
 
 #include <deque>
@@ -101,13 +101,13 @@ void interpret(const char* input, const size_t string_size) {
                 prev_addr = address;
                 address = 0;
                 break;
-            case '?':
+            case '#':
                 if (noext) break;
                 addrswp = address;
                 address = prev_addr;
                 prev_addr = addrswp;
                 break;
-            case '#':
+            case '?':
                 if (noext) break;
                 
                 std::cout << std::endl <<
