@@ -128,7 +128,7 @@ void interpret(const char* input, const size_t string_size) {
         // compat
         if (legacy) {
             // Constrain to 8-bit
-            // Not sure if % would behave like i want it tom hence the if/else
+            // Not sure if % would behave like I expect it to hence the if/else
             if (cells[address] > 128) cells[address] = -127;
             else if (cells[address] < -127) cells[address] = 128;
 
