@@ -13,7 +13,7 @@
  *  EXTENSIONS:
  *  _   Swap the contents of the cell with the contents of a reusable variable
  *  !   Jump to address 0
- *  #   Undo last ! (or ?)
+ *  #   Undo last ! (or #)
  *  ?   Print the contents of memory including the current address
  */
 
