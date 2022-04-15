@@ -1,6 +1,7 @@
 # A better brainfuck interpreter
 
 (still not completely bug-free lol)
+Note to self: I might've shot myself in the foot by operating completely on the stack. (But the stack is fast)
 
 ## Features
 

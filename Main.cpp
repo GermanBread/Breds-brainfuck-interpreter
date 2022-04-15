@@ -11,8 +11,7 @@ int main(int argc, const char** argv) {
     const char* code = nullptr;
     for (int i = 0; i < argc; i++) {
         if (strcmp(argv[i], "--run") == 0) {
-            if (i + 1 < argc)
-                code = argv[i + 1];
+            if (i + 1 < argc) code = argv[i + 1];
         } else if (strcmp(argv[i], "--help") == 0) {
             std::cerr << "Bred's Brainfuck Interpreter" << std::endl
              
@@ -41,9 +40,8 @@ int main(int argc, const char** argv) {
         std::cerr << "Run with --help" << std::endl;
         return 1;
     }
-    
-    size_t length = std::string(code).length();
-    interpret(code, length);
+
+    interpret(std::string(code));
 
     if (!verbose) return 0;
     

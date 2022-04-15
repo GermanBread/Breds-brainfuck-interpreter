@@ -4,7 +4,7 @@
 #include <deque>
 
 uint64_t address;
-std::deque<int64_t> cells;
+std::deque<int64_t> cells(1);
 
 bool nogc = false;
 bool noext = false;

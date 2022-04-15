@@ -25,9 +25,8 @@
 #include "Cells.hpp"
 #include "Global.hpp"
 
-void interpret(const char* input, const size_t string_size) {
+void interpret(const std::string input) {
     std::vector<uint64_t> loop_starts;
-    cells = std::deque<int64_t>(1);
     int64_t swap = 0;
     int64_t addrswp = 0;
 
@@ -35,7 +34,7 @@ void interpret(const char* input, const size_t string_size) {
     int64_t prev_addr = 0;
     int64_t loop_nest_level = -1;
 
-    for (size_t i = 0; i < string_size; i++) {
+    for (size_t i = 0; i < input.length(); i++) {
         char instruction = input[i];
 
         switch (instruction) {
@@ -69,7 +68,7 @@ void interpret(const char* input, const size_t string_size) {
                 if (cells[address] == 0) {
                     size_t pos = 0;
                     int64_t local_nest_level = loop_nest_level;
-                    for (size_t e = 0; e < string_size; e++) {
+                    for (size_t e = 0; e < input.length(); e++) {
                         if (input[e] == ']' && loop_nest_level == local_nest_level) {
                             pos = e;
                             break;
